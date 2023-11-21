@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <section id="intro">
+        <h1>Personality Predictor</h1>
+        <p>Calculate your <span>HEXACO score</span> and <span>MBTI type</span>!!</p>
+        <br>
+
+        <p><span>HEXACO score</span> defines the personality of a person in numerical values based on the following six factors: <span>Honesty-Humility</span> (H), <span>Emotionality</span> (E), <span>Extraversion</span> (X), <span>Agreeableness</span> (A), <span>Conscientiousness</span> (C), and <span>Openness to Experience</span> (O).</p>
+        <br>
+
+        <p><span>MBTI</span> test attempts to assign a value to each of four categories: <span>Introversion</span> (I) or <span>Extraversion</span> (E), <span>Sensing</span> (S) or <span>Intuition</span> (N), <span>Thinking</span> (T) or <span>Feeling</span> (F), and <span>Judging</span> (J) or <span>Perceiving</span> (P).</p>
+        <br><br>
+
+        <a class="container" href="#input"><div class="mouse"></div></a>
+    </section>
+    <section id="input">
+        <form action="/" method="POST">
+            <p>Describe yourself in 4 to 5 lines?</p>
+            <textarea name="about" cols="50" rows="10"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        <a href="#samples">Show Example Inputs</a>
+    </section>
+    
+    {% if scroll %}
+    <script>
+        document.location.hash = '#' + '{{ scroll }}';
+    </script>
+
+    {% if hexaco is defined and mbti is defined and descr is defined %}
+    <section id="result">
+        <h3>Result</h3>
+        <p>Your HEXACO Score: <span>{{hexaco}}</span></p>
+        <p>Your MBTI Type: <span>{{mbti}}</span></p>
+        <p>Your personality: <br><span>{{descr}}</span></p>
+    </section>
+    {% endif %}
+    
+    {% endif %}
+
+    <section id="samples">
+        <h3>Samples</h3>
+        <table>
+            <tr>
+                <td>I like playing cricket
+                <br>
+                Type: <span>ESFP</span>
+                </td>
+                <td>I don't like socializing
+                <br>
+                Type: <span>INTP</span>
+                </td>
+            </tr>
+            <tr>
+                <td>People like talking to me.
+                <br>
+                Type: <span>ESTP</span>
+                </td>
+                <td>I hate strangers
+                <br>
+                Type: <span>INFJ</span>
+                </td>
+            </tr>
+        </table>
+    </section>
+</body>
+</html>
